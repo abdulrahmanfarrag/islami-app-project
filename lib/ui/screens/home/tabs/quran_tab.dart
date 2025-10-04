@@ -15,11 +15,16 @@ class QuranTab extends StatefulWidget{
 }
 
 class _QuranTabState extends State<QuranTab> {
-
+  List<Sura> fullList = [];
+  List<Sura> searchList = [];
   @override
   void initState() {
     super.initState();
     Sura.generateSurasList();
+    //three dots adds another list on my list (cascade operator)
+    fullList = [...Sura.suras  ];
+    searchList = [...Sura.suras  ];
+
   }
 
   @override
@@ -29,16 +34,59 @@ class _QuranTabState extends State<QuranTab> {
        crossAxisAlignment: CrossAxisAlignment.start,
        children: [
          Padding(
+           padding: const EdgeInsets.all(16.0),
+           child: TextFormField(
+             onChanged: (value){
+               searchInList(value);
+
+             } ,
+             style: TextStyles.SmallLabelTextStyle(TextStyles: AppColor.white),
+             decoration:  InputDecoration(
+               filled: true,
+               fillColor: AppColor.black.withAlpha(80),
+               prefixIcon: ImageIcon(AssetImage(
+                 AppImages.searchIcon,
+               ), color: AppColor.gold,),
+               hintText: 'Search by sura name',
+               hintStyle: TextStyles.SmallLabelTextStyle(TextStyles: AppColor.white),
+               enabledBorder: OutlineInputBorder(
+                 borderRadius: BorderRadius.circular(10),
+                 borderSide: BorderSide(
+                   color: AppColor.gold
+                 )
+               ),
+               focusedBorder: OutlineInputBorder(
+                   borderRadius: BorderRadius.circular(10),
+                   borderSide: BorderSide(
+                       color: AppColor.gold
+                   )
+               ),
+             ),
+
+           ),
+         ),
+         Padding(
            padding: const EdgeInsets.symmetric(horizontal: 16.0),
            child: Text('Suras List' , style: TextStyles.LargeBodyTextStyle(),),
          ),
          Expanded(
-             child: ListView.separated(itemBuilder: (context , index) => SuraCard(sura: Sura.suras[index]),
+             child: ListView.separated(itemBuilder: (context , index) => SuraCard(sura: searchList[index]),
                  padding: EdgeInsets.all(16),
                  separatorBuilder: (_ , _ )=> Divider(indent: 40 , color:AppColor.white,),
-                 itemCount: Sura.suras.length ),)
+                 itemCount: searchList.length ),)
        ],
      )
    );
   }
-}
+
+  void searchInList(String value) {
+    var searchResult = fullList.where((element)=> element.nameEn.toLowerCase().contains(value.toLowerCase())).toList();
+    if(searchResult.isEmpty){
+      searchResult = fullList.where((element)=> element.nameAr.contains(value)).toList();
+    }
+      searchList = searchResult;
+    setState(() {
+
+    });
+    }
+  }
