@@ -15,6 +15,8 @@ abstract class AppImages {
   static const String leftCorner = 'lib/assets/images/img_left_corner.png';
   static const String rightCorner = 'lib/assets/images/img_right_corner.png';
   static const String searchIcon = 'lib/assets/images/quran-svgrepo-com 1.png';
+  static const String mostRecent = 'lib/assets/images/img_most_recent.png';
+
 
 
 
