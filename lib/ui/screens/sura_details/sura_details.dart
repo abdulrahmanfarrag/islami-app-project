@@ -6,71 +6,101 @@ import 'package:islami_app2/core/styles/app_images.dart';
 import 'package:islami_app2/ui/screens/home/models/sura.dart';
 
 class SuraDetails extends StatefulWidget {
-
   static const String routeName = 'sura_details';
-final Sura sura;
+  final Sura sura;
 
-  SuraDetails({super.key, required this.sura});
+  const SuraDetails({super.key, required this.sura});
 
   @override
   State<SuraDetails> createState() => _SuraDetailsState();
 }
 
 class _SuraDetailsState extends State<SuraDetails> {
-
- String? suraContent;
+  String? suraContent;
 
   @override
   Widget build(BuildContext context) {
-    if(suraContent == null) {
+    if (suraContent == null) {
       loadSuraDetails();
     }
+
     return Scaffold(
       backgroundColor: AppColor.black,
       appBar: AppBar(
         backgroundColor: AppColor.black,
-        foregroundColor: AppColor.gold ,
+        foregroundColor: AppColor.gold,
         title: Text(widget.sura.nameEn),
         surfaceTintColor: Colors.transparent,
       ),
-      body: suraContent == null? Center(child: CircularProgressIndicator(),):
-
-      Column(
+      body: suraContent == null
+          ? const Center(child: CircularProgressIndicator())
+          : Column(
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Row(
               children: [
                 Image.asset(AppImages.leftCorner),
-                Expanded(child:
-                Text(widget.sura.nameAr, style: TextStyles.LargeLabelTextStyle(TextStyles: AppColor.gold),
-                  textAlign: TextAlign.center,) ),
+                Expanded(
+                  child: Text(
+                    widget.sura.nameAr,
+                    style: TextStyles.LargeLabelTextStyle(
+                        TextStyles: AppColor.gold),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
                 Image.asset(AppImages.rightCorner),
               ],
             ),
           ),
-          Expanded(child: SingleChildScrollView(
-            padding: EdgeInsets.all(16),
-            child:Text(suraContent!, style: TextStyles.LargeBodyTextStyle(TextStyles: AppColor.gold),
-            textAlign: TextAlign.center,) ,)),
+          Expanded(
+            child: SingleChildScrollView(
+              padding: const EdgeInsets.all(16),
+              child: Directionality(
+                textDirection: TextDirection.rtl, // ✅ نص عربي من اليمين
+                child: Text(
+                  suraContent!,
+                  style: TextStyles.LargeBodyTextStyle(
+                      TextStyles: AppColor.gold),
+                  textAlign: TextAlign.center,
+                ),
+              ),
+            ),
+          ),
           Image.asset(AppImages.bottomDecoration),
         ],
-      )
+      ),
     );
   }
 
-  Future <void> loadSuraDetails() async {
-   var sura = await rootBundle.loadString('lib/assets/files/${widget.sura.id}.txt');
- var ayas = sura.split('\n');
+  /// ✅ دالة لتحويل الأرقام إلى أرقام عربية-هندية (٠١٢٣٤٥٦٧٨٩)
+  String toArabicIndic(int number) {
+    const arabicNums = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
+    final s = number.toString();
+    return s.split('').map((d) => arabicNums[int.parse(d)]).join();
+  }
 
- String formatedSura = '';
+  Future<void> loadSuraDetails() async {
+    final sura = await rootBundle
+        .loadString('lib/assets/files/${widget.sura.id}.txt');
 
- for( int i = 0; i<ayas.length ; i++){
-   formatedSura = "$formatedSura{${i+1}}${ayas[i].trim() } ";
- }
-suraContent = formatedSura;
- setState(() {
+    // فصل الأسطر + حذف الفارغ منها
+    final ayas = sura
+        .split(RegExp(r'\r?\n'))
+        .map((s) => s.trim())
+        .where((s) => s.isNotEmpty)
+        .toList();
 
- });
+    final buffer = StringBuffer();
+
+    for (int i = 0; i < ayas.length; i++) {
+      final aya = ayas[i];
+      final ayaNum = toArabicIndic(i + 1);
+      // نضع رقم الآية بعد نصها بين قوسين
+      buffer.write('$aya ﴿$ayaNum﴾ ');
+    }
+
+    suraContent = buffer.toString().trim();
+    setState(() {});
   }
 }
