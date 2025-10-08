@@ -1,15 +1,59 @@
-# islami_app2
+<img width="1920" height="1080" alt="Cover" src="https://github.com/user-attachments/assets/842eeab6-44af-48b3-a1ae-b10c898dcb74" /># 🕌 Islami App
 
-A new Flutter project.
-## Getting Started
+![Islami App Screenshot](lib/assets/images/Cover.png)
 
-This project is a starting point for a Flutter application.
+## 🧩 Description
+**Islami App** is a modern Flutter-based Islamic application designed to provide users with access to Qur’an, Hadith, Sebha, Radio, and Azkar in an elegant and smooth interface.  
+Built with simplicity and spiritual value in mind.
 
-A few resources to get you started if this is your first Flutter project:
+---
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## ⚙️ Frameworks & Languages
+- **Flutter**
+- **Dart**
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+---
+
+## 📦 Dependencies
+
+This project uses the following packages:
+
+| Package | Version | Description |
+|----------|----------|-------------|
+| cupertino_icons | ^1.0.8 | iOS-style icons |
+| flutter_native_splash | ^2.4.6 | Custom splash screen setup |
+| introduction_screen | ^4.0.0 | Intro screens for onboarding |
+| shared_preferences | ^2.5.3 | Local storage for simple data |
+| carousel_slider | ^5.1.1 | Carousel for displaying sliders |
+
+---
+
+## 🚀 Installing
+
+Run these commands in your terminal:
+
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/omararameen77/islami.git
+```
+
+### 2️⃣ Navigate to the Project Directory
+```bash
+cd islami
+```
+
+### 3️⃣ Install Dependencies
+```bash
+flutter pub get
+```
+
+---
+
+## 🧠 Help
+This app uses **SharedPreferences** to manage and retrieve local data efficiently.
+
+---
+
+## 👨‍💻 Author
+**Abdulrahman Saad**  
+📫 [GitHub Profile](https://github.com/abdulrahmanfarrag)
