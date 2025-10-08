@@ -1,6 +1,6 @@
 <img width="1920" height="1080" alt="Cover" src="https://github.com/user-attachments/assets/842eeab6-44af-48b3-a1ae-b10c898dcb74" /># 🕌 Islami App
 
-![Islami App Screenshot](lib/assets/images/Cover.png)
+![Islami App ](lib/assets/images/Cover.png)
 
 ## 🧩 Description
 **Islami App** is a modern Flutter-based Islamic application designed to provide users with access to Qur’an, Hadith, Sebha, Radio, and Azkar in an elegant and smooth interface.  
