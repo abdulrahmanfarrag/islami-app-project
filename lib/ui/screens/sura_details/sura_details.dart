@@ -57,7 +57,7 @@ class _SuraDetailsState extends State<SuraDetails> {
             child: SingleChildScrollView(
               padding: const EdgeInsets.all(16),
               child: Directionality(
-                textDirection: TextDirection.rtl, // ✅ نص عربي من اليمين
+                textDirection: TextDirection.rtl,
                 child: Text(
                   suraContent!,
                   style: TextStyles.LargeBodyTextStyle(
@@ -84,7 +84,6 @@ class _SuraDetailsState extends State<SuraDetails> {
     final sura = await rootBundle
         .loadString('lib/assets/files/${widget.sura.id}.txt');
 
-    // فصل الأسطر + حذف الفارغ منها
     final ayas = sura
         .split(RegExp(r'\r?\n'))
         .map((s) => s.trim())
@@ -96,7 +95,6 @@ class _SuraDetailsState extends State<SuraDetails> {
     for (int i = 0; i < ayas.length; i++) {
       final aya = ayas[i];
       final ayaNum = toArabicIndic(i + 1);
-      // نضع رقم الآية بعد نصها بين قوسين
       buffer.write('$aya ﴿$ayaNum﴾ ');
     }
 

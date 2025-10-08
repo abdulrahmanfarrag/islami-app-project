@@ -17,6 +17,8 @@ abstract class AppImages {
   static const String searchIcon = 'lib/assets/images/quran-svgrepo-com 1.png';
   static const String mostRecent = 'lib/assets/images/img_most_recent.png';
   static const String HadithCardBackGround = 'lib/assets/images/HadithCardBackGround .png';
+  static const String sebhaHead = 'lib/assets/images/sebha head.png';
+  static const String sebhaBody = 'lib/assets/images/SebhaBody.png';
 
 
 
