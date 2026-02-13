@@ -11,6 +11,14 @@ abstract class AppImages {
   static const String timeBg = 'lib/assets/images/time_bg.png';
   static const String imageHeader = 'lib/assets/images/ImageHeader.png';
   static const String frame = 'lib/assets/images/Frame 91.png';
+  static const String bottomDecoration = 'lib/assets/images/img_bottom_decoration.png';
+  static const String leftCorner = 'lib/assets/images/img_left_corner.png';
+  static const String rightCorner = 'lib/assets/images/img_right_corner.png';
+  static const String searchIcon = 'lib/assets/images/quran-svgrepo-com 1.png';
+  static const String mostRecent = 'lib/assets/images/img_most_recent.png';
+
+
+
 
 
 }

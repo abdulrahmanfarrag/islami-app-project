@@ -4,20 +4,21 @@ import 'package:islami_app2/core/styles/app_color.dart';
 import 'package:islami_app2/core/styles/app_images.dart';
 import 'package:islami_app2/ui/screens/sura_details/sura_details.dart';
 
-import '../models/sura.dart';
+import '../../models/sura.dart';
 
 class SuraCard extends StatelessWidget {
 
   final Sura sura;
+final Function (Sura) onSuraClick;
 
-  const SuraCard({super.key, required this.sura});
+  const SuraCard({super.key, required this.sura, required this.onSuraClick});
 
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.pushNamed(context, SuraDetails.routeName , arguments: sura);
+        onSuraClick(sura);
       },
       child: Row(
         children: [
